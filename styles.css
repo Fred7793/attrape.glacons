@@ -4,31 +4,36 @@ body {
     position: relative;
     overflow: hidden;
 }
+
 #gameContainer {
     position: relative;
     width: 800px;
     margin: 0 auto;
 }
+
 #scoreContainer {
     margin-right: 120px;
     text-align: left;
     display: inline-block;
 }
+
 canvas {
     background-color: #f0f0f0;
     display: block;
     margin: 20px auto;
     border: 1px solid #ccc;
 }
+
 #progressBarContainer {
     position: absolute;
     right: 0;
     top: 0;
     width: 100px;
     height: 600px;
-    background-color: #e0e0e0;
-    border-left: 1px solid #ccc;
+    background-color: #ffffff;
+    border-left: 1px solid #ffffff;
 }
+
 #glassContainer {
     position: relative;
     width: 80px;
@@ -39,14 +44,16 @@ canvas {
     border-radius: 10px;
     overflow: hidden;
 }
+
 #liquid {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 0%;
-    background-color: #FFD700;
+    background-color: #fff4c6;
     transition: height 0.3s;
 }
+
 #gameOver {
     display: none;
     position: fixed;
@@ -61,15 +68,18 @@ canvas {
     text-align: center;
     box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
 }
+
 #gameOver h2 {
     color: red;
     margin-top: 0;
 }
+
 #replayButton {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
 }
+
 #logo {
     position: absolute;
     top: 50%;
@@ -77,10 +87,37 @@ canvas {
     transform: translate(-50%, -50%);
     width: 300px;
 }
+
 #redirectButton {
     display: none;
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+/* Conteneur des boutons de redirection à droite de la jauge */
+#redirectButtonsContainer {
+    position: absolute;
+    right: -150px; /* Ajustez cette valeur pour le décalage par rapport à la jauge */
+    top: 50px; /* Distance depuis le haut de la jauge */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#redirectButtonsContainer button {
+    margin-bottom: 10px; /* Espacement entre les boutons */
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Couleur par défaut des boutons, personnalisez selon vos besoins */
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#redirectButtonsContainer button:hover {
+    background-color: #45a049; /* Couleur au survol du bouton */
 }

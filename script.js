@@ -46,8 +46,22 @@ const replayButton = document.getElementById('replayButton');
 const liquid = document.getElementById('liquid');
 const maxScore = 15;
 
-// Bouton de redirection
-const redirectButton = document.getElementById('redirectButton');
+// Conteneur pour les boutons de redirection
+const redirectButtonsContainer = document.getElementById('redirectButtonsContainer');
+
+// Paramètres de personnalisation pour les boutons de redirection
+const redirectButtonSettings = [
+    { text: "Video #1", link: 'https://www.youtube.com/watch?v=M9ipP5GEDVA', color: '#393c9d', fontSize: '20px' },
+    { text: "Video #2", link: 'https://www.youtube.com/shorts/-F2vSIaxWDQ', color: '#f6ef27', fontSize: '20px' },
+    { text: "Video #3", link: 'https://youtube.com/shorts/LSG8T-llybY', color: '#393c9d', fontSize: '20px' },
+    { text: "Video #4", link: 'https://youtube.com/shorts/K725uFaYNbs', color: '#f6ef27', fontSize: '20px' },
+    { text: "Video #5", link: 'https://youtube.com/shorts/sWJyGLu-Ksk', color: '#393c9d', fontSize: '20px' },
+    { text: "Video #6", link: 'https://youtube.com/shorts/1nEc_MQPDe8', color: '#f6ef27', fontSize: '20px' },
+    { text: "Video #7", link: 'https://youtube.com/shorts/Aa_7TALbN1c', color: '#393c9d', fontSize: '20px' },
+    { text: "Jeu", link: 'https://fred7793.github.io/casserglacon/', color: '#f6ef27', fontSize: '20px' },
+    // Ajoutez d'autres objets avec les paramètres que vous souhaitez pour chaque bouton
+];
+let buttonCounter = 0;
 
 document.addEventListener('keydown', keyDownHandler);
 document.addEventListener('keyup', keyUpHandler);
@@ -163,11 +177,6 @@ function updateProgressBar() {
     let scoreInGlass = score % maxScore;
     let percentage = (scoreInGlass / maxScore) * 100;
     liquid.style.height = percentage + '%';
-    if (score >= 15) {
-        redirectButton.style.display = 'block';
-    } else {
-        redirectButton.style.display = 'none';
-    }
 }
 
 function detectCollision() {
@@ -178,6 +187,11 @@ function detectCollision() {
         scoreDisplay.textContent = "Score : " + score;
         resetIceCube();
         updateProgressBar();
+
+        if (score % 2 === 0) {
+            addRedirectButton();
+        }
+
         if (score % difficultyThreshold === 0) {
             increaseDifficulty();
         }
@@ -186,6 +200,28 @@ function detectCollision() {
         }
     } else if (iceCubeY > canvasHeight) {
         gameOver();
+    }
+}
+
+function addRedirectButton() {
+    if (buttonCounter < redirectButtonSettings.length) {
+        const settings = redirectButtonSettings[buttonCounter];
+        const button = document.createElement('button');
+        
+        // Appliquer les propriétés personnalisées
+        button.textContent = settings.text;
+        button.style.backgroundColor = settings.color;
+        button.style.fontSize = settings.fontSize;
+        button.style.margin = '5px';
+        button.style.color = '#fff'; // Pour garantir que le texte est visible sur les boutons colorés
+        button.style.padding = '10px 15px';
+        button.style.border = 'none';
+        button.style.borderRadius = '5px';
+        button.style.cursor = 'pointer';
+
+        button.onclick = () => window.open(settings.link, '_blank');
+        redirectButtonsContainer.appendChild(button);
+        buttonCounter++;
     }
 }
 
@@ -210,7 +246,8 @@ function restartGame() {
     gameRunning = true;
     gameOverDiv.style.display = 'none';
     liquid.style.height = '0%';
-    redirectButton.style.display = 'none';
+    redirectButtonsContainer.innerHTML = ''; // Réinitialise les boutons
+    buttonCounter = 0;
     draw();
 }
 
