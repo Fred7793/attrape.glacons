@@ -18,7 +18,7 @@ let iceCubeX = Math.random() * (canvasWidth - iceCubeSize);
 let iceCubeY = -iceCubeSize;
 let iceCubeSpeed = 4;
 const iceCubeSpeedIncrement = 1;
-const difficultyThreshold = 2;
+const difficultyThreshold = 4;
 
 // Contrôles du clavier
 let rightPressed = false;
