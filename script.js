@@ -44,7 +44,7 @@ const replayButton = document.getElementById('replayButton');
 
 // Barre de progression
 const liquid = document.getElementById('liquid');
-const maxScore = 15;
+const maxScore = 16;
 
 // Conteneur pour les boutons de redirection
 const redirectButtonsContainer = document.getElementById('redirectButtonsContainer');
